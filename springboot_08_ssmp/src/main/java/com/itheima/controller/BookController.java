@@ -17,7 +17,7 @@ import java.util.List;
  * @Description: TODO
  * @Version: 1.0
  */
-@RestController
+//@RestController
 @RequestMapping("/books")
 public class BookController {
     @Autowired
