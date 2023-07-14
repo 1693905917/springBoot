@@ -1,3 +1,20 @@
 spring:
   profiles:
-    active: dev
+    active: @profile.active@
+    include: devDB,devMVC
+# 开启debug模式，输出调试信息，常用于检查系统运行状况
+#debug: true
+
+# 设置日志级别，root表示根节点，即整体应用日志级别
+#logging:
+#  level:
+#    root: debug
+logging:
+# 设置日志组
+  group:
+  # 自定义组名，设置当前组中所包含的包
+    ebank: com.itheima.controller,com.itheima.service,com.itheima.dao
+  level:
+    root: warn
+    # 为对应组设置日志级别
+    ebank: debug
