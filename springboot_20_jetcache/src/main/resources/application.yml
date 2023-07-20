@@ -1,0 +1,45 @@
+server:
+  port: 80
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=UTC
+      username: root
+      password: 1234
+jetcache:
+  statIntervalMinutes: 1
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson
+  remote:
+    default:
+      type: redis
+      host: localhost
+      port: 6379
+      keyConvertor: fastjson
+      #将我的值在进行enable的时候转成java对象：
+      valueEnable: java
+      #将我的值在转回来的时候也转回成java对象：
+      valueDeable: java
+      #jetcache?????poolConfig???????????????????
+      poolConfig:
+        maxTotal: 50
+    sms:
+      type: redis
+      host: localhost
+      port: 6379
+      keyConvertor: fastjson
+      #jetcache?????poolConfig???????????????????
+      poolConfig:
+        maxTotal: 50
