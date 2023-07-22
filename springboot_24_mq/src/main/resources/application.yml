@@ -1,0 +1,31 @@
+server:
+  port: 80
+
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+  jms:
+    template:
+      #??????????????????
+      default-destination: ithiema
+      #??publish-subscribe???????  ???false
+    pub-sub-domain: true
+
+  rabbitmq:
+    host: localhost
+    #注意：rabbitMQ对外管理端口是15676  而它对外的服务端口是5672,别搞错了
+    port: 5672
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    #注意：设置kafka不仅仅要设置bootstrap-servers，而且还要为消费者设置一个组，否则会报错
+    #与rocketmq的配置有点相似
+    consumer:
+      #自定义命名组名
+      group-id: order
+
+rocketmq:
+  name-server: localhost:9876
+  #注意：设置rocketmq不仅仅要设置命名服务器，而且还要为消费者设置一个组，否则会报错
+  producer:
+    group: group_rocketmq #自定义命名组名
