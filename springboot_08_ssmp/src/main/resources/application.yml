@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 81
 
 spring:
   datasource:
@@ -9,7 +9,32 @@ spring:
       url: jdbc:mysql://localhost:3306/ssm_db
       username: root
       password: 1234
-
+  boot:
+    admin:
+      client:
+        #记得一定要加上http://
+        url: http://localhost:8080
+management:
+  #开启单个Client服务端的健康节点信息
+  endpoint:
+    health:
+      #默认是never
+      show-details: always
+    info:
+      enabled: true
+  #开启全部、多个Client服务端的健康节点信息
+  endpoints:
+    web:
+      exposure:
+        #打* 是将全部Client服务端的节点都被允许监控  *要么加""要么加''都可
+        include: "*"
+    enabled-by-default: true
+info:
+  #从pom.xml中获取项目信息进行静态展示
+  appName: @project.artifactId@
+  version: @project.version@
+  company: 传智教育
+  author: HuangZhipeng
 
 mybatis-plus:
   global-config:
