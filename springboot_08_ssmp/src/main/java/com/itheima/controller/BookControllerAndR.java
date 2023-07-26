@@ -1,5 +1,6 @@
 package com.itheima.controller;
 
+import cn.itcast.service.IpCountService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.itheima.controller.utils.R;
 import com.itheima.domain.Book;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @BelongsProject: springBoot
@@ -59,8 +61,12 @@ public class BookControllerAndR {
 //        }
 //        return new R(true, page);
 //    }
+    @Autowired
+    private IpCountService ipCountService;
+
     @GetMapping("/{currentPage}/{pageSize}")
     public R getPage(@PathVariable("currentPage") int currentPage,@PathVariable("pageSize")  int pageSize,Book book){
+        ipCountService.count();
         IPage<Book> page = bookService.getPage(currentPage, pageSize,book);
         //如果当前页码值大于了总页码值，那么重新执行查询操作，使用最大页码值作为当前页码值
         if( currentPage > page.getPages()){
@@ -68,6 +74,8 @@ public class BookControllerAndR {
         }
         return new R(true, page);
     }
+
+
 
 
 }

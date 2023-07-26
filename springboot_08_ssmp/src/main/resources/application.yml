@@ -43,3 +43,8 @@ mybatis-plus:
       id-type: auto
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+tools:
+  ip:
+    cycle: 1
+    #cycle-reset: true
+    #model: simple
